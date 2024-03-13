@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="assest/CSS/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- 
+        Шапка
+    -->
+    <header class="header">
+        <nav class="menu">
+            <ul>
+                <div class="block">
+                    <img src="assest/img/logo.png" title="Dashboard">
+                    <li class="text_dash"><a href="index.html">Dashboard</a></li>
+                </div>
+                <div class="block">
+                    <img src="assest/img/icons/icon-main.png" title="Главная страница">
+                    <li><a href="index.html">Главная</a></li>
+                </div>
+                <div class="block" id="drop_hidden">
+                    <img src="assest/img/icons/icon-certif.png" title="Справки">
+                    <li>
+                        <a href="">Справка</a>
+                        <ul class="drop">
+                            <li><a href="blocks/MainCertificate_page.html" class="dropdown">Общие справки</a></li>
+                            <li><a href="blocks/CerificateCategories_vehicles.html" class="dropdown">Справки по транспорту</a></li>
+                            <li><a href="blocks/CertificateCategory_page.html" class="dropdown">Справки по неисправностям</a></li>
+                        </ul>
+                    </li>
+                </div>
+                <div class="block">
+                    <img src="assest/img/icons/icon-graphics.png" title="Графики">
+                    <li><a href="">Графика</a></li>
+                </div>
+                <div class="block" id="drop_hidden_two">
+                    <img src="assest/img/icons/icon-categoryes.png" title="Категории">
+                    <li>
+                        <a href="">Категории</a>
+                        <ul class="drop_two">
+                            <li><a href="blocks/Category-one_page.html" class="dropdown">Первая категория</a></li>
+                            <li><a href="" class="dropdown">Вторая категория</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+        <label id="menu_btn" class="menu-toggle">
+            <h2>Dashboard</h2>
+            <span></span>
+        </label>
+        <div class="heads">
+            <img src="../assest/img/icons/icon-notificate.png" alt="">
+            <div class="circle"><span class="name_user">A</span></div>
+        </div>
+    </header>
+
+    <section class="main">
+        <div class="container">
+            <h1 class="title_text">Показатели качества сборки и подготовки техники</h1>
+
+            <!-- Начало первого графика -->
+            <div class="grapss">
+                <div class="graphic">
+                    <h2 class="graph_title">Приёмка техники на склад со стороны СПМ</h2>
+                    <div id="chartContainer">
+                        <canvas id="myChart" width="1065" height="354"></canvas>
+                    </div>
+                </div>
+                <!-- Конец первого графика -->
+    
+                <div class="graphic">
+                    <h2 class="graph_title">Ввод техники в эксплуатацию</h2>
+                    <div id="chartContainer">
+                        <canvas id="myChartTwo" width="1065" height="354"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <script src="assest/JS/script.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        Chart.defaults.color = "black";
+        const myChart = new Chart(ctx, {
+            data: {
+                labels: ['Янв.23', 'Фев.23', 'Мар.23', 'Апр.23', 'Май.23', 'Июн.23', 'Июл.23', 'Авг.23', 'Сен.23', 'Окт.23', 'Ноя.23', 'Дек.23'],
+                datasets: [{
+                    label: 'Количество замечаний на единицу предъявленной техники',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#F3B411",
+                    data: [2.07, 1.84, 1.60, 1.68, 1.62, 1.48, 1.62, 1.39, 1.52, 1.88, 2.27, 1.80],
+                    yAxisID: 'y1',
+                }, {
+                    label: '% техники, принятой с замечаниями',
+                    type: "bar",
+                    backgroundColor: '#47243B',
+                    data: [100, 91, 75, 85, 85, 89, 97, 90, 82, 91, 94, 95],
+                    yAxisID: 'y',
+                }],
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        // beginAtZero: true,
+                        min: 0,
+                        max: 100,
+                        ticks: {
+                            stepSize: 50
+                        },
+                    },
+                    y1: {
+                        position: 'right',
+                        min: 0,
+                        max: 8,
+                        ticks: {
+                            stepSize: 2
+                        },
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 50,
+                            color: "black",
+                            font: {
+                                size: 14,
+                            }
+                        }
+                    },
+                }
+            }
+        });
+    </script>
+    <script>
+        const ctx2 = document.getElementById('myChartTwo').getContext('2d');
+        Chart.defaults.color = "black";
+        const myChart2 = new Chart(ctx2, {
+            data: {
+                labels: ['Янв.23', 'Фев.23', 'Мар.23', 'Апр.23', 'Май.23', 'Июн.23', 'Июл.23', 'Авг.23', 'Сен.23', 'Окт.23', 'Ноя.23', 'Дек.23'],
+                datasets: [{
+                    label: 'Количество замечаний на единицу предъявленной техники',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#F3B411",
+                    data: [0.37, 0.60, 0.92, 0.49, 0.64, 0.38, 0.55, 0.75, 0.42, 0.40, 0.32, 0.34],
+                    yAxisID: 'y1',
+                }, {
+                    label: '% техники, введённой с замечаниями',
+                    type: "bar",
+                    backgroundColor: '#47243B',
+                    data: [28, 40, 54, 31, 30, 24, 17, 44, 11, 20, 12, 16],
+                    yAxisID: 'y',
+                }],
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        // beginAtZero: true,
+                        min: 0,
+                        max: 60,
+                        ticks: {
+                            stepSize: 20
+                        },
+                    },
+                    y1: {
+                        position: 'right',
+                        min: 0,
+                        max: 1,
+                        ticks: {
+                            stepSize: 0.2
+                        },
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 50,
+                            color: "black",
+                            font: {
+                                size: 14,
+                            }
+                        }
+                    },
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справка о всех видах техники</title>
+    <link rel="stylesheet" href="../assest/CSS/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- 
+        Шапка
+    -->
+    <header class="header">
+        <nav class="menu">
+            <ul>
+                <div class="block">
+                    <img src="../assest/img/logo.png" title="Dashboard">
+                    <li class="text_dash"><a href="../index.html">Dashboard</a></li>
+                </div>
+                <div class="block">
+                    <img src="../assest/img/icons/icon-main.png" title="Главная страница">
+                    <li><a href="../index.html">Главная</a></li>
+                </div>
+                <div class="block" id="drop_hidden">
+                    <img src="../assest/img/icons/icon-certif.png" title="Справки">
+                    <li>
+                        <a href="">Справка</a>
+                        <ul class="drop">
+                            <li><a href="MainCertificate_page.html" class="dropdown">Общие справки</a></li>
+                            <li><a href="CerificateCategories_vehicles.html" class="dropdown">Справки по транспорту</a></li>
+                            <li><a href="CertificateCategory_page.html" class="dropdown">Справки по неисправностям</a></li>
+                        </ul>
+                    </li>
+                </div>
+                <div class="block">
+                    <img src="../assest/img/icons/icon-graphics.png" title="Графики">
+                    <li><a href="">Графика</a></li>
+                </div>
+                <div class="block" id="drop_hidden_two">
+                    <img src="../assest/img/icons/icon-categoryes.png" title="Категории">
+                    <li>
+                        <a href="">Категории</a>
+                        <ul class="drop_two">
+                            <li><a href="Category-one_page.html" class="dropdown">Первая категория</a></li>
+                            <li><a href="" class="dropdown">Вторая категория</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+        <label id="menu_btn" class="menu-toggle">
+            <h2>Dashboard</h2>
+            <span></span>
+        </label>
+        <div class="heads">
+            <button class="btn__filtr">Фильтрация</button>
+            <img src="../assest/img/icons/icon-notificate.png" alt="">
+            <div class="circle"><span class="name_user">A</span></div>
+        </div>
+    </header>
+
+    <!-- 
+        Основной раздел
+    -->
+    <section class="main">
+        <div class="container p2">
+            <h1 class="text_title">Ежемесячная справка о коэффициентах <br> всех видов техники</h1>
+            <p class="text_subtitle">Коэффициент технической готовности - доля календарного времени, в течение которого техника находилась
+                в работоспособном состоянии в гарантийный период эксплуатации техники.</p>
+
+            <div class="gistograms">
+                <!-- Начало первого графика -->
+                <div class="gist2">
+                    <h2 class="graph_title">КТГ Лёгкие бульдозеры</h2>
+                    <div id="gistContainer2">
+                        <canvas id="myGistogramm"></canvas>
+                    </div>
+                </div>
+                <!-- Конец первого графика -->
+
+                <div class="gist2">
+                    <h2 class="graph_title">КТГ Средние бульдозеры</h2>
+                    <div id="gistContainer2">
+                        <canvas id="myGistogramm2"></canvas>
+                    </div>
+                </div>
+
+                <div class="gist2">
+                    <h2 class="graph_title">КТГ Тяжёлые бульдозеры</h2>
+                    <div id="gistContainer2">
+                        <canvas id="myGistogramm3"></canvas>
+                    </div>
+                </div>
+
+                <div class="gist2">
+                    <h2 class="graph_title">КТГ Трубоулкадчики</h2>
+                    <div id="gistContainer2">
+                        <canvas id="myGistogramm4"></canvas>
+                    </div>
+                </div>
+
+                <div class="gist2">
+                    <h2 class="graph_title">КТГ Колёсная техника</h2>
+                    <div id="gistContainer2">
+                        <canvas id="myGistogramm5"></canvas>
+                    </div>
+                </div>
+
+                <div class="gist2">
+                    <h2 class="graph_title">КТГ Вся техника</h2>
+                    <div id="gistContainer2">
+                        <canvas id="myGistogramm6"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="../assest/JS/scrip.js"></script>
+    <script>
+        // 1 диаграмма
+        const ctx = document.getElementById('myGistogramm').getContext('2d');
+        Chart.defaults.color = "black";
+        const myChart = new Chart(ctx, {
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                datasets: [{
+                    label: '2023 помесячно',
+                    type: "bar",
+                    backgroundColor: '#47243B',
+                    data: [0.97, 0.96, 0.97, 0.97, 0.96, 0.97, 0.98, 0.97, 0.97, 0.98, 0.97, 0.97],
+                    yAxisID: 'y',
+                }, {
+                    label: '2024 помесячно',
+                    type: "bar",
+                    data: [0.96, 0, 0],
+                    backgroundColor: '#F3B411',
+                }, {
+                    label: '2023 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#008000",
+                    data: [0.9633, 0.9612, 0.9658, 0.9669, 0.9659, 0.9665, 0.9683, 0.9682, 0.9689, 0.9700, 0.9698, 0.9699]
+                }, {
+                    label: '2024 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#FF0000",
+                    data: [0.9633, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9]
+                }],
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        // beginAtZero: true,
+                        min: 0.90,
+                        max: 1,
+                        // stacked: true,
+                        ticks: {
+                            stepSize: 0.05
+                        },
+                    },
+
+                    x: {
+                        // stacked: true,
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 50,
+                            color: "black",
+                            font: {
+                                size: 14,
+                            }
+                        }
+                    },
+                }
+            }
+        });
+
+        // 2 диаграмма
+        const ctx2 = document.getElementById('myGistogramm2').getContext('2d');
+        Chart.defaults.color = "black";
+        const myChart2 = new Chart(ctx2, {
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                datasets: [{
+                    label: '2023 помесячно',
+                    type: "bar",
+                    backgroundColor: '#47243B',
+                    data: [0.96, 0.9463, 0.94, 0.9504, 0.9531, 0.9495, 0.9410, 0.9425, 0.9496, 0.9555, 0.9513, 0.9526],
+                    yAxisID: 'y',
+                }, {
+                    label: '2024 помесячно',
+                    type: "bar",
+                    data: [0.9645],
+                    backgroundColor: '#F3B411',
+                }, {
+                    label: '2023 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#008000",
+                    data: [0.9645, 0.9551, 0.9494, 0.9504, 0.9510, 0.9507, 0.9492, 0.9482, 0.9496, 0.9503, 0.9513, 0.9514]
+                }, {
+                    label: '2024 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#FF0000",
+                    data: [0.9645, 0.92, 0.92, 0.92, 0.92, 0.92, 0.92, 0.92, 0.92, 0.92, 0.92, 0.92]
+                }],
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        // beginAtZero: true,
+                        min: 0.92,
+                        max: 0.97,
+                        // stacked: true,
+                        ticks: {
+                            stepSize: 0.01
+                        },
+                    },
+
+                    x: {
+                        // stacked: true,
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 50,
+                            color: "black",
+                            font: {
+                                size: 14,
+                            }
+                        }
+                    },
+                }
+            }
+        });
+
+        // 3 диаграмма
+        const ctx3 = document.getElementById('myGistogramm3').getContext('2d');
+        Chart.defaults.color = "black";
+        const myChart3 = new Chart(ctx3, {
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                datasets: [{
+                    label: '2023 помесячно',
+                    type: "bar",
+                    backgroundColor: '#47243B',
+                    data: [0.8864, 0.8810, 0.9019, 0.9053, 0.88, 0.88, 0.90, 0.86, 0.89, 0.90, 0.91, 0.91],
+                    yAxisID: 'y',
+                }, {
+                    label: '2024 помесячно',
+                    type: "bar",
+                    data: [0.9154],
+                    backgroundColor: '#F3B411',
+                }, {
+                    label: '2023 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#008000",
+                    data: [0.8864, 0.8837, 0.8906, 0.8947, 0.8919, 0.8902, 0.8917, 0.8863, 0.8871, 0.8888, 0.8911, 0.8927]
+                }, {
+                    label: '2024 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#FF0000",
+                    data: [0.8864, 0.80, 0.80, 0.80, 0.80, 0.80, 0.80, 0.80, 0.80, 0.80, 0.80, 0.80]
+                }],
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        // beginAtZero: true,
+                        min: 0.80,
+                        max: 0.95,
+                        // stacked: true,
+                        ticks: {
+                            stepSize: 0.05
+                        },
+                    },
+
+                    x: {
+                        // stacked: true,
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 50,
+                            color: "black",
+                            font: {
+                                size: 14,
+                            }
+                        }
+                    },
+                }
+            }
+        });
+
+        // 4 диаграмма
+        const ctx4 = document.getElementById('myGistogramm4').getContext('2d');
+        Chart.defaults.color = "black";
+        const myChart4 = new Chart(ctx4, {
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                datasets: [{
+                    label: '2023 помесячно',
+                    type: "bar",
+                    backgroundColor: '#47243B',
+                    data: [0.9888, 0.9888, 1.0, 0.9879, 0.9698, 0.9765, 0.9357, 0.86, 0.9140, 0.8960, 0.8707, 0.8876],
+                    yAxisID: 'y',
+                }, {
+                    label: '2024 помесячно',
+                    type: "bar",
+                    data: [0.9289],
+                    backgroundColor: '#F3B411',
+                }, {
+                    label: '2023 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#008000",
+                    data: [0.9888, 0.9888, 0.9912, 0.9904, 0.9858, 0.9842, 0.9765, 0.9678, 0.9592, 0.9497, 0.9415, 0.9368]
+                }, {
+                    label: '2024 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#FF0000",
+                    data: [0.9888, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75]
+                }],
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        // beginAtZero: true,
+                        min: 0.75,
+                        max: 1.05,
+                        // stacked: true,
+                        ticks: {
+                            stepSize: 0.05
+                        },
+                    },
+
+                    x: {
+                        // stacked: true,
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 50,
+                            color: "black",
+                            font: {
+                                size: 14,
+                            }
+                        }
+                    },
+                }
+            }
+        });
+
+        // 5 диаграмма
+        const ctx5 = document.getElementById('myGistogramm5').getContext('2d');
+        Chart.defaults.color = "black";
+        const myChart5 = new Chart(ctx5, {
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                datasets: [{
+                    label: '2023 помесячно',
+                    type: "bar",
+                    backgroundColor: '#47243B',
+                    data: [0.98, 0.93, 0.97, 0.87, 0.83, 0.73, 0.96, 0.75, 0.79, 0.70, 0.71, 0.60],
+                    yAxisID: 'y',
+                }, {
+                    label: '2024 помесячно',
+                    type: "bar",
+                    data: [0.62],
+                    backgroundColor: '#F3B411',
+                }, {
+                    label: '2023 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#008000",
+                    data: [0.9839, 0.9545, 0.9618, 0.9406, 0.9164, 0.8694, 0.8959, 0.8586, 0.8438, 0.8137, 0.7934, 0.7603]
+                }, {
+                    label: '2024 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#FF0000",
+                    data: [0.9839, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                }],
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        // beginAtZero: true,
+                        min: 0,
+                        max: 1.5,
+                        // stacked: true,
+                        ticks: {
+                            stepSize: 0.5
+                        },
+                    },
+
+                    x: {
+                        // stacked: true,
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 50,
+                            color: "black",
+                            font: {
+                                size: 14,
+                            }
+                        }
+                    },
+                }
+            }
+        });
+
+        // 6 диаграмма
+        const ctx6 = document.getElementById('myGistogramm6').getContext('2d');
+        Chart.defaults.color = "black";
+        const myChart6 = new Chart(ctx6, {
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                datasets: [{
+                    label: '2023 помесячно',
+                    type: "bar",
+                    backgroundColor: '#47243B',
+                    data: [0.95, 0.94, 0.96, 0.96, 0.94, 0.95, 0.95, 0.93, 0.94, 0.94, 0.94, 0.94],
+                    yAxisID: 'y',
+                }, {
+                    label: '2024 помесячно',
+                    type: "bar",
+                    data: [0.9392],
+                    backgroundColor: '#F3B411',
+                }, {
+                    label: '2023 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#008000",
+                    data: [0.9525, 0.9488, 0.9520, 0.9531, 0.9512, 0.9505, 0.9503, 0.9473, 0.9465, 0.9458, 0.9450, 0.9446]
+                }, {
+                    label: '2024 нарастающий',
+                    type: "line",
+                    backgroundColor: '#FFF',
+                    borderColor: "#FF0000",
+                    data: [0.9525, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91]
+                }],
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        // beginAtZero: true,
+                        min: 0.91,
+                        max: 0.96,
+                        // stacked: true,
+                        ticks: {
+                            stepSize: 0.01
+                        },
+                    },
+
+                    x: {
+                        // stacked: true,
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 50,
+                            color: "black",
+                            font: {
+                                size: 14,
+                            }
+                        }
+                    },
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
